@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.utils import timezone
+from django.utils.timezone import now
 from datetime import timedelta
 
 class Question(models.Model):
@@ -15,9 +15,9 @@ class ExamSubmission(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     answers = models.JSONField()
     score = models.IntegerField(default=0)
-    start_time = models.DateTimeField(default=timezone)
+    start_time = models.DateTimeField(default=now)
     submitted_at=models.DateTimeField(auto_now_add=True)
 
 
     def is_time_expired(self):
-        return timezone.now()>self.start_time + timedelta(minutes=30)
+        return now()>self.start_time + timedelta(minutes=30)

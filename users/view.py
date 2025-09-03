@@ -13,7 +13,7 @@ class LoginView(APIView):
         serializer= LoginSerializer(data=request.data)
         if serializer.is_valid():
             user = authenticate(
-                username= serializer.validate_data["username"],
+                username= serializer.validated_data["username"],
                 password=serializer.validated_data["password"],
 
             )
