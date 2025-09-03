@@ -1,19 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Exam from "./pages/Exam";
-import Result from "./pages/Result";
+import Register from "./Pages/Register.jsx";
+import Login from "./Pages/Login.jsx";
+import Exam from "./Pages/Exam.jsx";
+import Result from "./Pages/Result.jsx";
 
 function App(){
   return (
-    <Route>
+    <Router>
       <Routes>
         <Route path="/" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/exam" element={<Exam/>} />
         <Route path="/result" element={<Result/>} />
       </Routes>
-    </Route>
+    </Router>
   )
 }
 

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "users",
     "exam",
     "rest_framework",
-    "rest_framework_simplejwt"
+    "rest_framework_simplejwt",
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
@@ -52,8 +53,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
-
+CORS_ALLOW_ALL_ORIGINS = True  
 ROOT_URLCONF = "backend.urls"
 
 AUTH_USER_MODEL="users.user"
