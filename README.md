@@ -4,7 +4,18 @@ A full-stack **online exam portal** (student module) built with **Django REST Fr
 Implements **registration, login (JWT), randomized MCQ exam, 30-minute countdown timer with auto-submit, and results display**.
 
 ---
+# Website Overview
+- Login Page
+![Student exam Portal Screenshot](https://github.com/ashishsai960/Student_Exam_Portal/blob/main/Images/Login%20Page.jpg)
 
+- SignUp Page
+![Student exam Portal Screenshot](https://github.com/ashishsai960/Student_Exam_Portal/blob/main/Images/Signup%20Page.jpg)
+
+- Exam Page
+![Student exam Portal Screenshot](https://github.com/ashishsai960/Student_Exam_Portal/blob/main/Images/Exam%20Page.jpg)
+
+- Result Page
+![Student exam Portal Screenshot](https://github.com/ashishsai960/Student_Exam_Portal/blob/main/Images/Results%20page.jpg)
 ## 📌 Features
 - Student **Register/Login** with JWT authentication  
 - **Start Exam** → fetches randomized MCQs  
