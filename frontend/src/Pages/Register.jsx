@@ -37,21 +37,18 @@ export default function Register() {
 
   return (
     <div className="reg-wrap">
-      {/* animated background blobs */}
       <div className="blob b1"></div>
       <div className="blob b2"></div>
       <div className="blob b3"></div>
 
-      {/* card */}
       <div className="reg-card">
         <div className="brand">
-          {/* mortarboard cap icon (inline svg) */}
           <svg viewBox="0 0 24 24" className="cap">
             <path d="M12 2 1 7l11 5 9-4.09V17h2V7L12 2z" />
             <path d="M11 21v-6l-7-3v4c0 2.76 3.58 5 8 5Z" />
           </svg>
           <div className="brand-text">
-            <h1>Join Your Class</h1>
+            <h1>Online Exam Platform</h1>
             <p>Create your student account</p>
           </div>
         </div>
@@ -59,7 +56,6 @@ export default function Register() {
         <form className="reg-form" onSubmit={handleSubmit}>
           <div className="field">
             <span className="icon">
-              {/* user icon */}
               <svg viewBox="0 0 24 24">
                 <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5ZM3 22a9 9 0 0 1 18 0Z" />
               </svg>
@@ -75,7 +71,6 @@ export default function Register() {
 
           <div className="field">
             <span className="icon">
-              {/* mail icon */}
               <svg viewBox="0 0 24 24">
                 <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2 8 6 8-6" />
               </svg>
@@ -92,7 +87,6 @@ export default function Register() {
 
           <div className="field">
             <span className="icon">
-              {/* lock icon */}
               <svg viewBox="0 0 24 24">
                 <path d="M6 10V8a6 6 0 1 1 12 0v2" />
                 <rect x="4" y="10" width="16" height="10" rx="2" />
@@ -119,7 +113,6 @@ export default function Register() {
         </div>
       </div>
 
-      {/* decorative illustration */}
       <div className="illustration">
         <div className="screen">
           <div className="bar">
