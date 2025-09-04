@@ -22,7 +22,7 @@ export default function Login() {
       localStorage.setItem("username", res.data.username);
 
       await Swal.fire({
-        title: "Login Successful 🎉",
+        title: "Login Successful Start Exam",
         text: `Welcome back, ${res.data.username}!`,
         icon: "success",
         confirmButtonColor: "#2563eb",

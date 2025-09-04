@@ -28,6 +28,15 @@ class SubmitExamView(APIView):
         exam_id = request.data.get("exam_id")
         answers= request.data.get("answers",{})
 
+        if not exam_id:
+            return Response({"error":"Missing exam_id"}, status=400)
+        try:
+            answers={str(k):v for k,v in (answers or {}).items()}
+            qids_int=[int(k) for k in answers.keys()]
+        except Exception:
+            return Response({"error":"Invalid answers payload"},status=400)
+        
+        questions=Question.objects.filter(id__in=qids_int)
 
         try:
             submission= ExamSubmission.objects.get(id=exam_id,user=request.user)
@@ -35,7 +44,7 @@ class SubmitExamView(APIView):
             return Response({"error":"Exam Not Found"},status=404)
         
         if submission.is_time_expired():
-            return Response({"error":"Time expired. Exam auto-submitted"},status=400)
+            reason="Time expired. Answers submitted"
         
         questions = Question.objects.filter(id__in=answers.keys())
         score=0
@@ -46,5 +55,5 @@ class SubmitExamView(APIView):
         submission.score=score
         submission.save()
 
-        return Response({"Score":score,"total":len(questions)})
+        return Response({"score":score,"total":len(questions)},status=200)
 # Create your views here.
