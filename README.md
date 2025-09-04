@@ -20,10 +20,10 @@ Implements **registration, login (JWT), randomized MCQ exam, 30-minute countdown
 
 Student_Exam_Portal/
 ├── backend/ # Django backend
-│ ├── backend/ # settings, urls
-│ ├── users/ # user registration & login
-│ ├── exam/ # questions & exam submission
-│ └── manage.py
+├── backend/ # settings, urls
+├── users/ # user registration & login
+├── exam/ # questions & exam submission
+└── manage.py
 │
 ├── frontend/ # React frontend
 │ └── src/pages/ # Register, Login, Exam, Result pages
@@ -62,25 +62,29 @@ venv\Scripts\activate
 pip install -r requirements.txt
 
 # (If requirements.txt not available)
-pip install django djangorestframework djangorestframework-simplejwt psycopg2-binary django-cors-headers
+- pip install django 
+- pip install djangorestframework 
+- pip install djangorestframework-simplejwt 
+- pip install psycopg2-binary 
+- pip install django-cors-headers
 
 # Run migrations
-python manage.py makemigrations
-python manage.py migrate
+- python manage.py makemigrations
+- python manage.py migrate
 
 # (Optional) Create superuser
-python manage.py createsuperuser
+- python manage.py createsuperuser
 
 # Start backend server
 python manage.py runserver
-👉 Backend runs on: http://127.0.0.1:8000
-3️⃣ Frontend Setup (React)
-cd ../frontend
+- Backend runs on: http://127.0.0.1:8000
+- Frontend Setup (React)
+ - cd../frontend
 
 # Install node modules
-npm install
+- npm install
 
 # Start frontend
 npm start
-👉 Frontend runs on: http://localhost:3000
+- Frontend runs on: http://localhost:3000
 
