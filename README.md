@@ -44,10 +44,10 @@ Student_Exam_Portal/
 
 ### 1️⃣ Clone the Repository
 
--- git clone https://github.com/<YOUR_USERNAME>/<YOUR_REPO>.git
-cd <YOUR_REPO>
-2️⃣ Backend Setup (Django)
-cd backend
+- git clone https://github.com/ashishsai960/Student_Exam_Portal.git
+- cd Student_Exam_Portal
+- Backend Setup (Django)
+- cd backend
 
 # Create virtual environment
 python -m venv venv
