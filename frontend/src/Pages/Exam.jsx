@@ -6,11 +6,10 @@ export default function Exam() {
   const [examId, setExamId] = useState(null);
   const [answers, setAnswers] = useState({});
   const [currentQ, setCurrentQ] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(1800); // 30 min = 1800 sec
+  const [timeLeft, setTimeLeft] = useState(1800); 
 
   const token = localStorage.getItem("access");
 
-  // Fetch exam
   useEffect(() => {
     const fetchExam = async () => {
       try {
@@ -21,17 +20,16 @@ export default function Exam() {
         setExamId(res.data.exam_id);
         setTimeLeft(res.data.time_limit);
       } catch (err) {
-        alert("❌ Could not start exam. Please login again.");
+        alert("Could not start exam. Please login again.");
         window.location.href = "/";
       }
     };
     fetchExam();
   }, [token]);
 
-  // Timer
   useEffect(() => {
     if (timeLeft <= 0) {
-      handleSubmit(); // auto-submit
+      handleSubmit(); 
       return;
     }
     const timer = setInterval(() => setTimeLeft((t) => t - 1), 1000);
@@ -71,8 +69,8 @@ export default function Exam() {
   return (
     <div className="exam-page">
       <div className="exam-header">
-        <h2>📝 Student Exam</h2>
-        <div className="timer">{formatTime(timeLeft)}</div>
+        <h2>Student Exam</h2>
+        <div className="timer">Time Left: {formatTime(timeLeft)}</div>
       </div>
 
       <div className="exam-content">
@@ -110,7 +108,7 @@ export default function Exam() {
         </div>
       </div>
 
-      {/* Bottom Submit */}
+
       <div className="exam-footer">
         <button onClick={handleSubmit} className="submit-btn">
           Submit Exam
