@@ -10,16 +10,22 @@ class StartExamView(APIView):
     permission_classes=[IsAuthenticated]
 
     def get(self, request):
-        submission=ExamSubmission.objects.create(user=request.user,answers={})
         questions= list(Question.objects.all())
         random.shuffle(questions)
         selected = questions[:5]
+        submission=ExamSubmission.objects.create(
+            user=request.user,
+            answers={},
+            question_ids=[q.id for q in selected],
+        )
         serializer =QuestionSerializer(selected,many=True)
+        data = QuestionSerializer(selected, many=True).data
 
         return Response({
             "exam_id":submission.id,
-            "questions":serializer.data,
-            "time_limit":30*60
+            "questions": data,
+            "time_limit":30*60,
+            "total":len(selected),
         })
 
 class SubmitExamView(APIView):
@@ -32,28 +38,32 @@ class SubmitExamView(APIView):
             return Response({"error":"Missing exam_id"}, status=400)
         try:
             answers={str(k):v for k,v in (answers or {}).items()}
-            qids_int=[int(k) for k in answers.keys()]
         except Exception:
             return Response({"error":"Invalid answers payload"},status=400)
-        
-        questions=Question.objects.filter(id__in=qids_int)
 
         try:
             submission= ExamSubmission.objects.get(id=exam_id,user=request.user)
         except ExamSubmission.DoesNotExist:
             return Response({"error":"Exam Not Found"},status=404)
+        qids = submission.question_ids or []
+        try:
+            qids_int = [int(x) for x in qids]
+        except Exception:
+            qids_int = [int(x) for x in answers.keys()]
+
+        questions = list(Question.objects.filter(id__in=qids_int))
+
         
-        if submission.is_time_expired():
-            reason="Time expired. Answers submitted"
-        
-        questions = Question.objects.filter(id__in=answers.keys())
         score=0
         for q in questions:
-            if answers[str(q.id)]==q.correct_answer:
+            selected = answers.get(str(q.id))
+            if selected==q.correct_answer:
                 score+=1
         submission.answers = answers
         submission.score=score
         submission.save()
+        reason = "Time expired. Answers submitted." if submission.is_time_expired() else None
 
-        return Response({"score":score,"total":len(questions)},status=200)
+
+        return Response({"score":score,"total": len(qids_int) if qids_int else len(questions),"reason":reason},status=200)
 # Create your views here.

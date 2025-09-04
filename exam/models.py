@@ -17,6 +17,7 @@ class ExamSubmission(models.Model):
     score = models.IntegerField(default=0)
     start_time = models.DateTimeField(default=now)
     submitted_at=models.DateTimeField(auto_now_add=True)
+    question_ids=models.JSONField(default=list,blank=True)
 
 
     def is_time_expired(self):
